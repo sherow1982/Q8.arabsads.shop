@@ -2,6 +2,8 @@ import { SITE_URL } from "@/lib/constants";
 import { loadCatalog } from "@/lib/products.server";
 import { getProductPath } from "@/types/product";
 
+export const dynamic = "force-static";
+
 type SitemapEntry = {
   url: string;
   lastModified: Date;

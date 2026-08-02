@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { formatPrice, getProductPath, hasDiscount } from "@/types/product";
-import { getProductBySlug, searchProducts } from "@/lib/products.server";
+import { getProductBySlug, loadCatalog, searchProducts } from "@/lib/products.server";
 import ProductCard from "@/components/ProductCard";
 import AddToCartButton from "@/components/AddToCartButton";
 import ProductWhatsAppButton from "@/components/ProductWhatsAppButton";
@@ -13,7 +13,13 @@ import { STORE_NAME } from "@/lib/constants";
 
 type Props = { params: Promise<{ slug: string }> };
 
-export const dynamic = "force-dynamic";
+// ─── توليد كل صفحات المنتجات عند البناء (Static Export) ──────
+export async function generateStaticParams() {
+  const catalog = loadCatalog();
+  return catalog.products.map((product) => ({
+    slug: product.id.replace(/^ProductVariant_/, ""),
+  }));
+}
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
@@ -39,7 +45,6 @@ export default async function ProductPage({ params }: Props) {
   const { slug } = await params;
   const product = getProductBySlug(slug);
 
-  // TypeScript guard: notFound() throws, so product is defined after this
   if (!product) {
     notFound();
   }
@@ -65,7 +70,7 @@ export default async function ProductPage({ params }: Props) {
           productSchema(product!),
           breadcrumbSchema([
             { name: "الرئيسية", path: "/" },
-            { name: "المنتجات", path: "/products" },
+            { name: "المنتجات", path: "/products/" },
             { name: product!.title, path },
           ]),
         ]}
@@ -75,13 +80,12 @@ export default async function ProductPage({ params }: Props) {
         <nav className="mb-4 text-xs text-[#888]" aria-label="مسار التصفح">
           <Link href="/" className="hover:text-[#e53935]">الرئيسية</Link>
           <span className="mx-2">/</span>
-          <Link href="/products" className="hover:text-[#e53935]">المنتجات</Link>
+          <Link href="/products/" className="hover:text-[#e53935]">المنتجات</Link>
           <span className="mx-2">/</span>
           <span className="text-[#555]">{product!.title}</span>
         </nav>
 
         <div className="grid gap-8 lg:grid-cols-2">
-          {/* صورة المنتج */}
           <div className="overflow-hidden rounded-sm border border-[#eee] bg-[#fafafa]">
             {product!.image ? (
               <img
@@ -94,7 +98,6 @@ export default async function ProductPage({ params }: Props) {
             )}
           </div>
 
-          {/* تفاصيل المنتج */}
           <div>
             <span className="text-xs font-bold text-[#e53935]">{product!.category}</span>
             <h1 className="mt-2 text-2xl font-black leading-9 text-[#333] lg:text-3xl">
@@ -106,7 +109,9 @@ export default async function ProductPage({ params }: Props) {
                 <span className="text-sm font-bold">KD</span> {formatPrice(product!)}
               </span>
               {discounted && product!.price != null ? (
-                <span className="text-lg text-[#999] line-through">KD {Math.ceil(product!.price).toFixed(3)}</span>
+                <span className="text-lg text-[#999] line-through">
+                  KD {Math.ceil(product!.price).toFixed(3)}
+                </span>
               ) : null}
               {discounted ? (
                 <span className="rounded bg-[#e53935] px-2 py-0.5 text-xs font-bold text-white">
@@ -121,7 +126,7 @@ export default async function ProductPage({ params }: Props) {
               <AddToCartButton product={product!} />
               <ProductWhatsAppButton product={productInquiry} />
               <Link
-                href={`/products?category=${encodeURIComponent(product!.category)}`}
+                href={`/products/?category=${encodeURIComponent(product!.category)}`}
                 className="rounded border border-[#ddd] px-8 py-3 text-center text-sm font-bold text-[#333] hover:border-[#333]"
               >
                 المزيد من {product!.category}

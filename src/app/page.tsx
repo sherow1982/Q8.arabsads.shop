@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import Link from "next/link";
 import ProductCatalog from "@/components/ProductCatalog";
 import ProductCard from "@/components/ProductCard";
@@ -18,19 +19,19 @@ const banners = [
   {
     title: "أحدث العروض",
     subtitle: "خصومات على آلاف المنتجات",
-    href: "/products",
+    href: "/products/",
     color: "from-[#1a1a2e] to-[#16213e]",
   },
   {
     title: "إلكترونيات",
     subtitle: "أجهزة وإكسسوارات بأفضل الأسعار",
-    href: "/products?category=إلكترونيات",
+    href: "/products/?category=%D8%A5%D9%84%D9%83%D8%AA%D8%B1%D9%88%D9%86%D9%8A%D8%A7%D8%AA",
     color: "from-[#e53935] to-[#c62828]",
   },
   {
     title: "المنزل والحديقة",
     subtitle: "كل ما تحتاجه لمنزلك",
-    href: "/products?category=المنزل والحديقة",
+    href: "/products/?category=%D8%A7%D9%84%D9%85%D9%86%D8%B2%D9%84+%D9%88%D8%A7%D9%84%D8%AD%D8%AF%D9%8A%D9%82%D8%A9",
     color: "from-[#2e7d32] to-[#1b5e20]",
   },
 ];
@@ -99,7 +100,17 @@ export default function Home() {
         </div>
       </section>
 
-      <ProductCatalog title="منتجات مميزة" compact />
+      <Suspense fallback={
+        <div className="mx-auto max-w-[1400px] px-4 py-8 lg:px-6">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6">
+            {Array.from({ length: 8 }).map((_, i) => (
+              <div key={i} className="h-72 animate-pulse rounded-sm bg-[#f0f0f0]" />
+            ))}
+          </div>
+        </div>
+      }>
+        <ProductCatalog title="منتجات مميزة" compact />
+      </Suspense>
     </>
   );
 }
