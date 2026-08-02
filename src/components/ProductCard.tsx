@@ -11,7 +11,7 @@ export default function ProductCard({ product }: Props) {
 
   return (
     <article className="group relative flex h-full flex-col overflow-hidden rounded-sm border border-[#eee] bg-white transition hover:border-[#ddd] hover:shadow-md">
-      <Link href={getProductPath(product)} className="relative block aspect-square overflow-hidden bg-[#fafafa]">
+      <Link href={getProductPath(product)} prefetch={false} className="relative block aspect-square overflow-hidden bg-[#fafafa]">
         {product.image ? (
           <img
             src={product.image}
@@ -20,7 +20,7 @@ export default function ProductCard({ product }: Props) {
             className="h-full w-full object-contain p-3 transition duration-300 group-hover:scale-105"
           />
         ) : (
-          <div className="flex h-full items-center justify-center text-sm text-[#999]">بدون صورة</div>
+          <div className="flex h-80 items-center justify-center text-sm text-[#999]">بدون صورة</div>
         )}
         {discounted ? (
           <span className="absolute left-2 top-2 rounded bg-[#e53935] px-2 py-0.5 text-[11px] font-bold text-white">
@@ -30,7 +30,7 @@ export default function ProductCard({ product }: Props) {
       </Link>
 
       <div className="flex flex-1 flex-col p-3">
-        <Link href={getProductPath(product)}>
+        <Link href={getProductPath(product)} prefetch={false}>
           <h3 className="line-clamp-2 min-h-[40px] text-sm font-bold leading-5 text-[#333] group-hover:text-[#e53935]">
             {product.title}
           </h3>
@@ -52,6 +52,7 @@ export default function ProductCard({ product }: Props) {
 
         <Link
           href={getProductPath(product)}
+          prefetch={false}
           className="mt-3 block rounded bg-[#333] py-2 text-center text-xs font-bold text-white opacity-0 transition group-hover:opacity-100 hover:bg-[#e53935]"
         >
           عرض التفاصيل
