@@ -3,9 +3,29 @@ import path from "path";
 import { fileURLToPath } from "url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const TSV_PATH = "C:/Users/sherow/Downloads/منتجات matajer-alkuwait.arabsa.tsv";
 const OUT_DIR = path.join(__dirname, "../data");
 const OUT_FILE = path.join(OUT_DIR, "products.json");
+
+// ─── إذا كان ملف المنتجات موجوداً، تخطَّ الاستيراد ────────────
+// هذا يسمح ببناء المشروع على Cloudflare بدون ملف TSV المحلي.
+// لتحديث المنتجات: شغّل السكريبت يدوياً بتمرير مسار الملف:
+//   node scripts/import-products.mjs path/to/products.tsv
+if (!process.argv[2] && fs.existsSync(OUT_FILE)) {
+  const stat = fs.statSync(OUT_FILE);
+  console.log("✓ products.json already exists, skipping import.");
+  console.log(`  Size: ${(stat.size / 1024 / 1024).toFixed(2)} MB`);
+  console.log(`  Path: ${OUT_FILE}`);
+  process.exit(0);
+}
+
+// ─── مسار ملف TSV ────────────────────────────────────────────
+const TSV_PATH = process.argv[2] || "C:/Users/sherow/Downloads/منتجات matajer-alkuwait.arabsa.tsv";
+
+if (!fs.existsSync(TSV_PATH)) {
+  console.error(`❌ TSV file not found: ${TSV_PATH}`);
+  console.error("Usage: node scripts/import-products.mjs path/to/products.tsv");
+  process.exit(1);
+}
 
 function parseTsv(content) {
   const rows = [];
