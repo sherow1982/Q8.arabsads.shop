@@ -72,9 +72,9 @@ export default function Home() {
         <div className="mx-auto max-w-[1400px] px-4 lg:px-6">
           <div className="mb-5 flex items-center justify-between">
             <h2 className="text-xl font-black text-[#333]">وصل حديثاً</h2>
-            <Link href="/products" className="text-sm font-bold text-[#e53935] hover:underline">
+            <a href="/products/" className="text-sm font-bold text-[#e53935] hover:underline">
               المزيد ←
-            </Link>
+            </a>
           </div>
           <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
             {featured.slice(0, 6).map((product) => (
@@ -89,13 +89,13 @@ export default function Home() {
           <h2 className="mb-5 text-xl font-black text-[#333]">تسوق حسب التصنيف</h2>
           <div className="grid gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
             {catalog.categories.map((cat) => (
-              <Link
+              <a
                 key={cat}
-                href={`/products?category=${encodeURIComponent(cat)}`}
+                href={`/products/?category=${encodeURIComponent(cat)}`}
                 className="rounded-sm border border-[#eee] bg-white p-4 text-center text-sm font-bold text-[#333] transition hover:border-[#e53935] hover:text-[#e53935]"
               >
                 {cat}
-              </Link>
+              </a>
             ))}
           </div>
         </div>

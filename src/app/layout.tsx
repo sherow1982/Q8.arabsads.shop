@@ -69,18 +69,6 @@ export const metadata: Metadata = {
   authors: [{ name: STORE_NAME_AR, url: SITE_URL }],
   creator: STORE_NAME_AR,
   publisher: STORE_NAME_AR,
-  generator: "Next.js",
-  icons: {
-    icon: [
-      { url: "/favicon.png", type: "image/png" },
-      { url: "/logo.webp", type: "image/webp" },
-    ],
-    shortcut: "/favicon.png",
-    apple: "/favicon.png",
-    other: [
-      { rel: "apple-touch-icon", url: "/favicon.png" },
-    ],
-  },
   formatDetection: { telephone: true, email: true, address: true },
   alternates: {
     canonical: SITE_URL,
@@ -97,9 +85,6 @@ export const metadata: Metadata = {
     locale: "ar_KW",
     type: "website",
     url: SITE_URL,
-    countryName: "Kuwait",
-    emails: [STORE_EMAIL],
-    phoneNumbers: [STORE_PHONE_FULL],
     images: [
       {
         url: "/banner.webp",
@@ -129,10 +114,6 @@ export const metadata: Metadata = {
       "max-image-preview": "large",
       "max-snippet": -1,
     },
-  },
-  verification: {
-    // أضف كود التحقق من Google Search Console عند الحاجة
-    // google: "XXXXXX",
   },
 };
 
