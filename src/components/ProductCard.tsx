@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { formatPrice, getProductPath, hasDiscount } from "@/types/product";
+import { ceilPrice, formatPrice, getProductPath, hasDiscount } from "@/types/product";
 import type { Product } from "@/types/product";
 
 type Props = {
@@ -43,7 +43,7 @@ export default function ProductCard({ product }: Props) {
             </span>
             {discounted && product.price != null ? (
               <span className="text-xs text-[#999] line-through">
-                KD {product.price.toFixed(3)}
+                KD {ceilPrice(product.price).toFixed(3)}
               </span>
             ) : null}
           </div>

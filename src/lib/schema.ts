@@ -10,7 +10,7 @@ import {
   STORE_PHONE_FULL,
 } from "./constants";
 import type { Product } from "@/types/product";
-import { formatPrice, getProductPath, hasDiscount } from "@/types/product";
+import { ceilPrice, formatPrice, getProductPath, hasDiscount } from "@/types/product";
 
 export function absoluteUrl(path: string): string {
   return `${SITE_URL}${path.startsWith("/") ? path : `/${path}`}`;
@@ -208,7 +208,7 @@ export function productSchema(product: Product) {
             "@id": `${productUrl}#offer`,
             url: productUrl,
             priceCurrency: "KWD",
-            price: price.toFixed(3),
+            price: ceilPrice(price).toFixed(3),
             availability: "https://schema.org/InStock",
             itemCondition: "https://schema.org/NewCondition",
             priceValidUntil: new Date(Date.now() + 30 * 86400000)
@@ -284,7 +284,7 @@ export function breadcrumbSchema(items: { name: string; path?: string }[]) {
 export function merchantPrice(product: Product): string | null {
   const value = product.salePrice ?? product.price;
   if (value == null) return null;
-  return `${value.toFixed(3)} KWD`;
+  return `${ceilPrice(value).toFixed(3)} KWD`;
 }
 
 export function merchantDescription(product: Product): string {

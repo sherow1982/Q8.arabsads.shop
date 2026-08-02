@@ -20,10 +20,21 @@ export type Catalog = {
   products: Product[];
 };
 
+/**
+ * تقريب السعر للأعلى لأقرب دينار كامل
+ * مثال: 2.450 KD → 3.000 KD
+ */
+export function ceilPrice(value: number): number {
+  return Math.ceil(value);
+}
+
+/**
+ * تنسيق السعر المعروض — مع تقريب للأعلى
+ */
 export function formatPrice(product: Product): string {
   const value = product.salePrice ?? product.price;
   if (value == null) return product.saleLabel || product.priceLabel || "";
-  return value.toFixed(3);
+  return ceilPrice(value).toFixed(3);
 }
 
 export function hasDiscount(product: Product): boolean {

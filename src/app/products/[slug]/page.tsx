@@ -106,7 +106,7 @@ export default async function ProductPage({ params }: Props) {
                 <span className="text-sm font-bold">KD</span> {formatPrice(product!)}
               </span>
               {discounted && product!.price != null ? (
-                <span className="text-lg text-[#999] line-through">KD {product!.price.toFixed(3)}</span>
+                <span className="text-lg text-[#999] line-through">KD {Math.ceil(product!.price).toFixed(3)}</span>
               ) : null}
               {discounted ? (
                 <span className="rounded bg-[#e53935] px-2 py-0.5 text-xs font-bold text-white">
