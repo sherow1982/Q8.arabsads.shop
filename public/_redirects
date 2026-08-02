@@ -1,0 +1,3 @@
+# Cloudflare Pages SPA fallback — serve /products/index.html for all product detail URLs
+# Static files (if any) take precedence over this rule
+/products/* /products/index.html 200

@@ -1,9 +1,9 @@
 import { Suspense } from "react";
-import ProductCatalog from "@/components/ProductCatalog";
 import JsonLd from "@/components/JsonLd";
 import type { Metadata } from "next";
 import { loadCatalog } from "@/lib/products.server";
 import { itemListSchema, webPageSchema } from "@/lib/schema";
+import ProductsRouter from "@/components/ProductsRouter";
 
 const PAGE_TITLE = "جميع المنتجات";
 const PAGE_DESCRIPTION =
@@ -17,7 +17,6 @@ export const metadata: Metadata = {
 
 export default function ProductsPage() {
   const catalog = loadCatalog();
-
   return (
     <>
       <JsonLd
@@ -37,7 +36,7 @@ export default function ProductsPage() {
           </div>
         }
       >
-        <ProductCatalog title="جميع المنتجات" />
+        <ProductsRouter />
       </Suspense>
     </>
   );
