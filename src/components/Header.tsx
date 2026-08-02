@@ -6,9 +6,8 @@ import { FormEvent, useState, useEffect } from "react";
 import CartIcon from "./CartIcon";
 import { STORE_NAME_AR } from "@/lib/constants";
 
-const LOGO = "/logo.png";
-const LOGO_FALLBACK =
-  "https://www.gstoreq8.com/images/logos/257/65663_skih-0y_2pg7-e4__1_.png";
+const LOGO = "/logo.webp";
+const LOGO_FALLBACK = "/logo.png";
 
 export default function Header() {
   const router = useRouter();
@@ -38,14 +37,12 @@ export default function Header() {
     >
       <div className="mx-auto flex max-w-[1400px] items-center gap-4 px-4 py-3 lg:px-6">
         {/* Logo */}
-        <Link href="/" className="shrink-0 transition-opacity hover:opacity-85">
+        <Link href="/" className="shrink-0 transition-opacity hover:opacity-90">
           <img
             src={logoSrc}
             alt={STORE_NAME_AR}
             onError={() => setLogoSrc(LOGO_FALLBACK)}
-            width={180}
-            height={44}
-            className="h-10 w-auto lg:h-11"
+            className="h-10 w-auto max-w-[180px] object-contain sm:h-12 md:h-14 md:max-w-[220px]"
           />
         </Link>
 

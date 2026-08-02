@@ -1,11 +1,9 @@
 import { Suspense } from "react";
-import Link from "next/link";
 import ProductCatalog from "@/components/ProductCatalog";
 import ProductCard from "@/components/ProductCard";
 import JsonLd from "@/components/JsonLd";
 import { getFeaturedProducts, loadCatalog } from "@/lib/products.server";
 import { itemListSchema, webPageSchema } from "@/lib/schema";
-import { STORE_NAME_AR } from "@/lib/constants";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -14,27 +12,6 @@ export const metadata: Metadata = {
     "Q8 اعلانات العرب — وجهتك للتسوق الذكي في الكويت. آلاف المنتجات من إلكترونيات، ألعاب، منزل وجمال بأفضل الأسعار بالدينار الكويتي.",
   alternates: { canonical: "/" },
 };
-
-const banners = [
-  {
-    title: "أحدث العروض",
-    subtitle: "خصومات على آلاف المنتجات",
-    href: "/products/",
-    color: "from-[#1a1a2e] to-[#16213e]",
-  },
-  {
-    title: "إلكترونيات",
-    subtitle: "أجهزة وإكسسوارات بأفضل الأسعار",
-    href: "/products/?category=%D8%A5%D9%84%D9%83%D8%AA%D8%B1%D9%88%D9%86%D9%8A%D8%A7%D8%AA",
-    color: "from-[#e53935] to-[#c62828]",
-  },
-  {
-    title: "المنزل والحديقة",
-    subtitle: "كل ما تحتاجه لمنزلك",
-    href: "/products/?category=%D8%A7%D9%84%D9%85%D9%86%D8%B2%D9%84+%D9%88%D8%A7%D9%84%D8%AD%D8%AF%D9%8A%D9%82%D8%A9",
-    color: "from-[#2e7d32] to-[#1b5e20]",
-  },
-];
 
 export default function Home() {
   const featured = getFeaturedProducts(12);
@@ -52,18 +29,42 @@ export default function Home() {
           itemListSchema(featured, "منتجات مميزة من Q8 اعلانات العرب", 12),
         ]}
       />
+      {/* ─── البانر الرئيسي ─── */}
+      <section className="w-full bg-[#1a1a2e]">
+        <a href="/products/" className="block">
+          <img
+            src="/banner.webp"
+            alt="Q8 اعلانات العرب — أفضل العروض والخصومات"
+            className="h-auto w-full object-cover"
+            style={{ maxHeight: "480px", objectPosition: "center" }}
+          />
+        </a>
+      </section>
+
+      {/* ─── كاردات التصنيف السريع ─── */}
       <section className="bg-white">
-        <div className="mx-auto grid max-w-[1400px] gap-3 px-4 py-4 lg:grid-cols-3 lg:px-6">
-          {banners.map((banner) => (
-            <Link
-              key={banner.title}
-              href={banner.href}
-              className={`rounded-sm bg-gradient-to-l ${banner.color} p-6 text-white transition hover:opacity-95`}
-            >
-              <h2 className="text-xl font-black">{banner.title}</h2>
-              <p className="mt-1 text-sm opacity-90">{banner.subtitle}</p>
-            </Link>
-          ))}
+        <div className="mx-auto grid max-w-[1400px] gap-3 px-4 py-4 sm:grid-cols-3 lg:px-6">
+          <a
+            href="/products/?category=%D8%A5%D9%84%D9%83%D8%AA%D8%B1%D9%88%D9%86%D9%8A%D8%A7%D8%AA"
+            className="rounded-sm bg-gradient-to-l from-[#e53935] to-[#c62828] p-6 text-white transition hover:opacity-95"
+          >
+            <h2 className="text-xl font-black">إلكترونيات</h2>
+            <p className="mt-1 text-sm opacity-90">أجهزة وإكسسوارات بأفضل الأسعار</p>
+          </a>
+          <a
+            href="/products/?category=%D8%A3%D9%84%D8%B9%D8%A7%D8%A8+%D9%88%D9%87%D9%88%D8%A7%D9%8A%D8%A7%D8%AA"
+            className="rounded-sm bg-gradient-to-l from-[#1a237e] to-[#283593] p-6 text-white transition hover:opacity-95"
+          >
+            <h2 className="text-xl font-black">ألعاب وهوايات</h2>
+            <p className="mt-1 text-sm opacity-90">قيمنق، بلايستيشن، إكس بوكس</p>
+          </a>
+          <a
+            href="/products/?category=%D8%A7%D9%84%D9%85%D9%86%D8%B2%D9%84+%D9%88%D8%A7%D9%84%D8%AD%D8%AF%D9%8A%D9%82%D8%A9"
+            className="rounded-sm bg-gradient-to-l from-[#2e7d32] to-[#1b5e20] p-6 text-white transition hover:opacity-95"
+          >
+            <h2 className="text-xl font-black">المنزل والحديقة</h2>
+            <p className="mt-1 text-sm opacity-90">كل ما تحتاجه لمنزلك</p>
+          </a>
         </div>
       </section>
 

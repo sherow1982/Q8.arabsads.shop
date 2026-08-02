@@ -47,7 +47,11 @@ export const metadata: Metadata = {
   applicationName: STORE_NAME,
   authors: [{ name: STORE_NAME_AR, url: SITE_URL }],
   creator: STORE_NAME,
-  publisher: STORE_NAME,
+  icons: {
+    icon: "/favicon.png",
+    shortcut: "/favicon.png",
+    apple: "/favicon.png",
+  },
   formatDetection: { telephone: true, email: true },
   alternates: {
     canonical: SITE_URL,
