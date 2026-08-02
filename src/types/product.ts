@@ -42,5 +42,5 @@ export function hasDiscount(product: Product): boolean {
 }
 
 export function getProductPath(product: Product): string {
-  return `/products/${product.id.replace(/^ProductVariant_/, "")}`;
+  return `/products/${product.id.replace(/^ProductVariant_/, "")}/`;
 }

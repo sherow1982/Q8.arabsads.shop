@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { ceilPrice, formatPrice, getProductPath, hasDiscount } from "@/types/product";
 import type { Product } from "@/types/product";
 
@@ -11,7 +10,7 @@ export default function ProductCard({ product }: Props) {
 
   return (
     <article className="group relative flex h-full flex-col overflow-hidden rounded-sm border border-[#eee] bg-white transition hover:border-[#ddd] hover:shadow-md">
-      <Link href={getProductPath(product)} prefetch={false} className="relative block aspect-square overflow-hidden bg-[#fafafa]">
+      <a href={getProductPath(product)} className="relative block aspect-square overflow-hidden bg-[#fafafa]">
         {product.image ? (
           <img
             src={product.image}
@@ -27,14 +26,14 @@ export default function ProductCard({ product }: Props) {
             خصم
           </span>
         ) : null}
-      </Link>
+      </a>
 
       <div className="flex flex-1 flex-col p-3">
-        <Link href={getProductPath(product)} prefetch={false}>
+        <a href={getProductPath(product)}>
           <h3 className="line-clamp-2 min-h-[40px] text-sm font-bold leading-5 text-[#333] group-hover:text-[#e53935]">
             {product.title}
           </h3>
-        </Link>
+        </a>
 
         <div className="mt-auto pt-3">
           <div className="flex flex-wrap items-baseline gap-2">
@@ -50,13 +49,12 @@ export default function ProductCard({ product }: Props) {
           <p className="mt-1 text-[11px] text-[#888]">{product.category}</p>
         </div>
 
-        <Link
+        <a
           href={getProductPath(product)}
-          prefetch={false}
           className="mt-3 block rounded bg-[#333] py-2 text-center text-xs font-bold text-white opacity-0 transition group-hover:opacity-100 hover:bg-[#e53935]"
         >
           عرض التفاصيل
-        </Link>
+        </a>
       </div>
     </article>
   );
