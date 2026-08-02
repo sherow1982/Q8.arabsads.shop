@@ -61,7 +61,7 @@ const storeLinks = [
   { label: "عن Q8 اعلانات العرب", href: "/about" },
   { label: "الاتصال بنا", href: "/contact" },
   { label: "الأسئلة الشائعة", href: "/faq" },
-  { label: "تتبع الطلب", href: "/contact" },
+  { label: "سلة التسوق", href: "/cart" },
 ];
 
 const legalLinks = [
