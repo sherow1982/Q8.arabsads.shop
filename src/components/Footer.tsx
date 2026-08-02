@@ -82,7 +82,9 @@ export default function Footer() {
             <img
               src={LOGO}
               alt={STORE_NAME_AR}
-              className="mb-5 h-12 w-auto max-w-[200px] object-contain sm:h-14"
+              width={160}
+              height={40}
+              className="mb-5 h-10 w-auto"
             />
           </Link>
           <p className="mb-6 text-sm leading-7 text-[#8888a8]">

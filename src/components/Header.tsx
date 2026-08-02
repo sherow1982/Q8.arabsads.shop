@@ -42,7 +42,9 @@ export default function Header() {
             src={logoSrc}
             alt={STORE_NAME_AR}
             onError={() => setLogoSrc(LOGO_FALLBACK)}
-            className="h-10 w-auto max-w-[180px] object-contain sm:h-12 md:h-14 md:max-w-[220px]"
+            width={180}
+            height={44}
+            className="h-10 w-auto lg:h-11"
           />
         </Link>
 
