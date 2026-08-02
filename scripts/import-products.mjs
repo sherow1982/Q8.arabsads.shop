@@ -45,6 +45,18 @@ function generateStaticFiles() {
   const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://q8.arabsads.shop";
   const STORE_NAME = "Q8 اعلانات العرب";
 
+  // تجميع الـ Slugs العربية النقية
+  const seenSlugs = new Set();
+  catalog.products.forEach((p) => {
+    let s = slugify(p.title, p.id);
+    while (seenSlugs.has(s)) {
+      s = `${s}-${seenSlugs.size}`;
+    }
+    seenSlugs.add(s);
+    p.slug = s;
+  });
+  fs.writeFileSync(OUT_FILE, JSON.stringify(catalog));
+
   fs.mkdirSync(PUBLIC_DIR, { recursive: true });
 
   // 1. products-index.json — خفيف للفلترة Client-Side
@@ -153,7 +165,16 @@ function parseTsv(content) {
   return rows;
 }
 
-function slugify(_text, id) { return id.replace(/^ProductVariant_/, ""); }
+function slugify(title, id) {
+  if (!title) return id.replace(/^ProductVariant_/, "");
+  const clean = title
+    .trim()
+    .replace(/[^\p{L}\p{N}\s-]/gu, "")
+    .replace(/[\s_]+/g, "-")
+    .replace(/-+/g, "-")
+    .replace(/^-+|-+$/g, "");
+  return clean || id.replace(/^ProductVariant_/, "");
+}
 function parsePrice(value) {
   if (!value) return null;
   const match = value.match(/([\d.]+)/);
