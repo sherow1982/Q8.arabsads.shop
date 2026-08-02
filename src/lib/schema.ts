@@ -27,7 +27,7 @@ export function organizationSchema() {
     url: SITE_URL,
     logo: {
       "@type": "ImageObject",
-      url: STORE_LOGO_URL,
+      url: absoluteUrl(STORE_LOGO_URL),
       width: 300,
       height: 75,
     },
@@ -93,8 +93,8 @@ export function storeSchema() {
     description:
       "Q8 اعلانات العرب — منصة التسوق الإلكتروني الأولى في الكويت. آلاف المنتجات بأفضل الأسعار.",
     url: SITE_URL,
-    logo: STORE_LOGO_URL,
-    image: STORE_LOGO_URL,
+    logo: absoluteUrl(STORE_LOGO_URL),
+    image: absoluteUrl(STORE_LOGO_URL),
     email: STORE_EMAIL,
     telephone: STORE_PHONE_FULL,
     address: {

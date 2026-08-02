@@ -29,4 +29,4 @@ export const STORE_LOCALE = "ar-KW";
 export const STORE_TIMEZONE = "Asia/Kuwait";
 
 // لوغو المتجر
-export const STORE_LOGO_URL = "https://q8.arabsads.shop/logo.png";
+export const STORE_LOGO_URL = "/logo.png";
