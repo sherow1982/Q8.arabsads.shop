@@ -15,21 +15,42 @@
 
 * {
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
 
 html {
   scroll-behavior: smooth;
+  text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
   margin: 0;
   background: var(--background);
   color: var(--foreground);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* منع تحديد النص غير المقصود على الموبايل */
+  -webkit-user-select: none;
+  user-select: text;
+  overscroll-behavior-y: contain;
 }
 
+/* أحجام عناصر اللمس لا تقل عن 44px (معيار Apple/Google) */
 button,
-a {
+a,
+input[type="button"],
+input[type="submit"],
+label[for] {
+  min-height: 44px;
+  min-width: 44px;
   transition: all 0.2s ease;
+}
+
+/* إصلاح ظهور الروابط على الموبايل */
+a {
+  -webkit-tap-highlight-color: rgba(229,57,53,0.1);
+  text-decoration: none;
 }
 
 .line-clamp-2 {
@@ -39,12 +60,31 @@ a {
   overflow: hidden;
 }
 
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Scrollbar */
 ::-webkit-scrollbar {
-  height: 6px;
-  width: 6px;
+  height: 4px;
+  width: 4px;
 }
 
 ::-webkit-scrollbar-thumb {
   background: #ccc;
   border-radius: 999px;
+}
+
+/* صور متجاوبة افتراضياً */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* safe area للـ iPhone notch / bottom bar */
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
 }

@@ -7,13 +7,13 @@ export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://q8.arabsads.shop";
 
 // واتساب
-export const WHATSAPP_NUMBER = "9651801220";
+export const WHATSAPP_NUMBER = "201110760081";
 export const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}`;
 
 // بيانات التواصل
-export const STORE_PHONE = "1801220";
-export const STORE_PHONE_FULL = "+965 1801220";
-export const STORE_EMAIL = "info@arabsads.shop";
+export const STORE_PHONE = "201110760081";
+export const STORE_PHONE_FULL = "+20 111 076 0081";
+export const STORE_EMAIL = "sales@q8.arabsads.shop";
 
 // اسم المتجر
 export const STORE_NAME = "Q8 ArabsAds";
