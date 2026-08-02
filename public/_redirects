@@ -1,3 +1,5 @@
-# Cloudflare Pages SPA fallback — serve /products/index.html for all product detail URLs
-# Static files (if any) take precedence over this rule
-/products/* /products/index.html 200
+# Cloudflare Pages SPA rewrite rules
+# The ! forces Cloudflare to rewrite 404 paths to /products/index.html with a 200 status code
+/products/* /products/index.html 200!
+/products/* /products/ 200!
+/* /index.html 200!
