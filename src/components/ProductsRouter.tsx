@@ -1,14 +1,22 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { Suspense } from "react";
+import { useEffect, useState, Suspense } from "react";
 import ProductCatalog from "./ProductCatalog";
 import ProductDetailClient from "./ProductDetailClient";
 
 function RouterInner() {
-  const pathname = usePathname() ?? "";
-  // segments: ["products"] or ["products", "some-slug"]
-  const segments = pathname.split("/").filter(Boolean);
+  const nextPathname = usePathname() ?? "";
+  const [currentPath, setCurrentPath] = useState(nextPathname);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setCurrentPath(window.location.pathname);
+    }
+  }, [nextPathname]);
+
+  const path = currentPath || nextPathname;
+  const segments = path.split("/").filter(Boolean);
   const slug = segments.length >= 2 ? segments[1] : null;
 
   if (slug) {

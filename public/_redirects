@@ -1,3 +1,4 @@
 # Cloudflare Pages SPA rewrite rules
-/products/* /products/index.html 200
+/products/* /products 200
+/products/* /products/ 200
 /* /index.html 200
