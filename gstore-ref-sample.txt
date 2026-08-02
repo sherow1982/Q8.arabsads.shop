@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html 
+    lang="ar"
+    dir="rtl"
+    class="
+ sticky-top-panel sticky-buy-panel-_top"
+>
+<head>
+<title>جي ستور كيو ايت... أهلاً بك في عالمك</title>
+<base href="https://www.gstoreq8.com/" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" data-ca-mode="ultimate" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
+<meta name="description" content="وجهتك لعالم القيمنق وألعاب الفيديو، نوفر أحدث الأجهزة، الإكسسوارات، والألعاب الأصلية لعشّاق التحدي والأداء العالي.
+
+" />
+
+    <meta name="keywords" content="جي ستور, جي ستور كيو ايت, جيستور الكويت, جي ستور Q8, Gstoreq8, g store q8, g-storeq8, محل العاب فيديو قيمز, وبي سي الكويت 
+متجر توصيل, محل اونلاين, العاب سيديات, تلفونات هواتف, طاولات قيمنق كراسي, كمبيوتر، قيمنق، ألعاب فيديو، أجهزة ألعاب، بلايستيشن، إكس بوكس، إكسسوارات قيمنق، ألعاب أصلية" />
+
+<meta name="format-detection" content="telephone=no">
+
+<!-- IS ctrl=index mode=index uri=index.php -->
+            <link rel="canonical" href="https://www.gstoreq8.com/" />
+            
+
+    <link title="English" dir="ltr" type="text/html" rel="alternate" hreflang="en" href="https://www.gstoreq8.com/?sl=en" />
+    <link title="العربية" dir="rtl" type="text/html" rel="alternate" hreflang="x-default" href="https://www.gstoreq8.com/" />
+    <link title="العربية" dir="rtl" type="text/html" rel="alternate" hreflang="ar" href="https://www.gstoreq8.com/" />
+
+    
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="ar" />
+<meta property="og:title" content="جي ستور كيو ايت... أهلاً بك في عالمك" />
+<meta property="og:description" content="وجهتك لعالم القيمنق وألعاب الفيديو، نوفر أحدث الأجهزة، الإكسسوارات، والألعاب الأصلية لعشّاق التحدي والأداء العالي.
+
+" />
+<meta property="og:url" content="https://www.gstoreq8.com/" />
+            <meta property="og:image" content="https://www.gstoreq8.com/images/logos/257/65663_skih-0y_2pg7-e4__1_.png" />
+    
+
+    <meta name="theme-color" content="#ffffff">
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-NZKB33Z6');</script>
+<!-- End Google Tag Manager -->
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700&display=swap" rel="stylesheet">
+
+<meta name="google-site-verification" content="JYJNjzhCXofPB-gKceq925VN-vJRasljmsdYSxiNBb4" />
+<script src="//rum-static.pingdom.net/pa-677934667a5fd40012000335.js" async></script>
+
+<meta name="algolia-site-verification"  content="37860764C7BF86A6" />
+
+    <link href="https://www.gstoreq8.com/images/logos/257/GStore_Logo__1__q13o-dt_xc3t-ym__1_.png" rel="shortcut icon" type="image/png" />
+
+<link rel="manifest" href="https://www.gstoreq8.com/manifest.json?v=b9bef40bf3e2a5e32470b067f7ad23c2" /><link type="text/css" rel="stylesheet" href="https://www.gstoreq8.com/var/cache/misc/assets/design/themes/abt__unitheme2/css/standalone-rtl.e7fe87e77324f2f1950462521d1f2f161785525098.css?1785525098" />    <script data-no-defer>
+        
+        window.WebSocket = new Proxy(window.WebSocket, {
+            construct(target, args) {
+                const ws = new target(...args);
+                const wsEvents = ['close', 'error', 'message', 'open'];
+
+                window._websockets = window._websockets || new Map();
+                window._websockets.set(ws, {});
+
+                const removeWs = (target) => {
+                    window._websockets.remove(target);
+                }
+
+                ws.close = new Proxy(ws.close, {
+                    apply(target, thisArg, args) {
+                        if (args[0] !== 4444) removeWs(thisArg);
+                        return target.apply(thisArg, args);
+                    }
+                });
+
+                const addEventListenerProxy = new Proxy(ws.addEventListener, {
+                    apply(target, thisArg, args) {
+                        const [e, func] = args;
+                        if (window._websockets.has(thisArg)) {
+                            window._websockets.get(thisArg)[e]?.push(func) || (window._websockets.get(thisArg)[e] = [func]);
+                        }
+
+                        return target.apply(thisArg, args);
+                    }
+                });
+
+                ws.addEventListener = addEventListenerProxy;
+
+                wsEvents.forEach((e) => {
+                    Object.defineProperty(ws, 'on' + e, {
+                        set(func) {
+                            const callback = function (event) {
+                                func.call(this, event);
+                            }
