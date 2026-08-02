@@ -24,7 +24,7 @@ export default function ProductDetailClient({ slug }: { slug: string }) {
     fetch("/products-index.json")
       .then((r) => r.json())
       .then((catalog: Catalog) => {
-        const target = decodeURIComponent(slug);
+        const target = decodeURIComponent(slug).replace(/\/+$/, "");
         const found = catalog.products.find(
           (p) =>
             p.slug === target ||

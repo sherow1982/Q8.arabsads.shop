@@ -1,2 +1,4 @@
-# Cloudflare Pages SPA rules
+# Cloudflare Pages _redirects
+# Redirect legacy path-based product URLs to query-based URLs
+/products/* /products/?slug=:splat 302
 /* /index.html 200
