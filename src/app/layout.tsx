@@ -1,4 +1,4 @@
-import type { Metadata, Viewport } from "next";
+import type { Metadata } from "next";
 import { Cairo } from "next/font/google";
 import "./globals.css";
 import TopBar from "@/components/TopBar";
@@ -28,7 +28,7 @@ const cairo = Cairo({
 });
 
 // ─── Viewport / موبايل أولاً ───────────────────────────────────
-export const viewport: Viewport = {
+export const viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
