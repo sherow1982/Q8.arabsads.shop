@@ -2,6 +2,9 @@
 
 # dependencies
 /node_modules
+
+# lock file — platform-specific (Windows vs Linux conflict on Cloudflare)
+package-lock.json
 /.pnp
 .pnp.*
 .yarn/*
