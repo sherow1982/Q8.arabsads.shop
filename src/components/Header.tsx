@@ -6,8 +6,7 @@ import { FormEvent, useState, useEffect } from "react";
 import CartIcon from "./CartIcon";
 import { STORE_NAME_AR } from "@/lib/constants";
 
-const LOGO = "https://q8.arabsads.shop/logo.png";
-// لوغو احتياطي في حال لم يُرفع الملف بعد
+const LOGO = "/logo.png";
 const LOGO_FALLBACK =
   "https://www.gstoreq8.com/images/logos/257/65663_skih-0y_2pg7-e4__1_.png";
 

@@ -2,9 +2,7 @@ import Link from "next/link";
 import { buildWhatsAppInquiryUrl } from "@/lib/whatsapp";
 import { STORE_EMAIL, STORE_NAME_AR, STORE_PHONE_FULL } from "@/lib/constants";
 
-// استخدم اللوغو الأصلي حتى يتم رفع اللوغو الجديد على الدومين
-const LOGO =
-  "https://www.gstoreq8.com/images/logos/257/65663_skih-0y_2pg7-e4__1_.png";
+const LOGO = "/logo.png";
 
 const socialLinks = [
   {
