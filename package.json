@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --port 3000",
-    "build": "node scripts/import-products.mjs && next build",
+    "build": "node scripts/import-products.mjs && next build && node scripts/post-build.mjs",
     "start": "next start --port 3000",
     "import-products": "node scripts/import-products.mjs",
     "lint": "eslint"
