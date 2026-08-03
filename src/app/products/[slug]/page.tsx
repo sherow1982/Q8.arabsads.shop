@@ -1,7 +1,7 @@
 import ProductShell from "./shell";
 
 export function generateStaticParams() {
-  return [{ slug: "_" }];
+  return [{ slug: "index" }];
 }
 
 export default function ProductPage() {
