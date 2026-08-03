@@ -1,10 +1,9 @@
-import ProductPageClient from "./client";
+import ProductShell from "./shell";
 
-// تبني صفحة واحدة فقط كـ shell — المنتج يتحمل client-side
 export function generateStaticParams() {
   return [{ slug: "_" }];
 }
 
 export default function ProductPage() {
-  return <ProductPageClient />;
+  return <ProductShell />;
 }
