@@ -44,5 +44,5 @@ export function hasDiscount(product: Product): boolean {
 
 export function getProductPath(product: Product): string {
   const slug = product.slug || product.id.replace(/^ProductVariant_/, "");
-  return `/products/${encodeURIComponent(slug)}/`;
+  return `/products/product/?slug=${encodeURIComponent(slug)}`;
 }

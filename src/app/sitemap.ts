@@ -42,7 +42,7 @@ export default function sitemap(): SitemapEntry[] {
   const productPages: SitemapEntry[] = catalog.products.map((product) => {
     const slug = product.slug || product.id.replace(/^ProductVariant_/, "");
     return {
-      url: `${SITE_URL}/products/${encodeURIComponent(slug)}/`,
+      url: `${SITE_URL}/products/product/?slug=${encodeURIComponent(slug)}`,
       lastModified: importedAt,
       changeFrequency: "weekly" as const,
       priority: 0.7,

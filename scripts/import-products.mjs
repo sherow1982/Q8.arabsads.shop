@@ -88,7 +88,7 @@ function generateStaticFiles() {
       const priceStr = `${ceilPrice(basePrice).toFixed(3)} KWD`;
       const salePriceStr = hasSale ? `${ceilPrice(p.salePrice).toFixed(3)} KWD` : "";
       const slug = p.slug || p.id.replace(/^ProductVariant_/, "");
-      const link = `${SITE_URL}/products/${encodeURIComponent(slug)}/`;
+      const link = `${SITE_URL}/products/product/?slug=${encodeURIComponent(slug)}`;
       const desc = (p.description || p.summary || p.title)
         .replace(/\s+/g, " ").trim().slice(0, 5000);
       const mpn = p.id.replace(/^ProductVariant_/, "");

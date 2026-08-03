@@ -60,7 +60,7 @@ export default function ProductDetailClient({ slug }: { slug: string }) {
               price: price,
               availability: "https://schema.org/InStock",
               itemCondition: "https://schema.org/NewCondition",
-              url: `${SITE_URL}/products/${encodeURIComponent(found.slug)}/`,
+              url: `${SITE_URL}/products/product/?slug=${encodeURIComponent(found.slug)}/`,
               shippingDetails: {
                 "@type": "OfferShippingDetails",
                 shippingRate: { "@type": "MonetaryAmount", value: 0, currency: "KWD" },
@@ -106,7 +106,7 @@ export default function ProductDetailClient({ slug }: { slug: string }) {
   }
 
   const discounted = hasDiscount(product);
-  const productLink = `${SITE_URL}/products/${slug}/`;
+  const productLink = `${SITE_URL}/products/product/?slug=${encodeURIComponent(slug)}/`;
   const productInquiry = { title: product.title, price: formatPrice(product), link: productLink };
 
   return (

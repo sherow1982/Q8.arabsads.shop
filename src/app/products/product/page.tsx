@@ -3,13 +3,13 @@
 import { useEffect, useState } from "react";
 import ProductDetailClient from "@/components/ProductDetailClient";
 
-export default function ProductShell() {
+export default function ProductPage() {
   const [slug, setSlug] = useState("");
 
   useEffect(() => {
-    const parts = window.location.pathname.replace(/\/+$/, "").split("/");
-    const raw = parts[parts.length - 1] ?? "";
-    setSlug(decodeURIComponent(raw));
+    const params = new URLSearchParams(window.location.search);
+    const s = params.get("slug") ?? "";
+    setSlug(decodeURIComponent(s));
   }, []);
 
   if (!slug) return (
