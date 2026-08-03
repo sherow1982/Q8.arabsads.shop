@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Cairo } from "next/font/google";
 import "./globals.css";
 import TopBar from "@/components/TopBar";
@@ -147,15 +148,6 @@ export default function RootLayout({
         {/* ─── Google Site Verification ────────────── */}
         <meta name="google-site-verification" content="J41Ee0OHJVjB_8DoJsdE5Yx1AFqhbG8yQFOIr-twjoc" />
         {/* ─── Google Analytics (gtag.js) ─────────── */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-KS8HZ72L6X" />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-KS8HZ72L6X');`,
-          }}
-        />
         {/* ─── Mobile App Tags ────────────────── */}
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -178,6 +170,17 @@ export default function RootLayout({
             <WhatsAppFloat />
           </WhatsAppProductProvider>
         </CartProvider>
+        {/* ─── Google Analytics ─────────────────── */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-KS8HZ72L6X"
+          strategy="afterInteractive"
+        />
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-KS8HZ72L6X');`}
+        </Script>
       </body>
     </html>
   );

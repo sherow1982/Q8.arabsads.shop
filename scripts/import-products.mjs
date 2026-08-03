@@ -176,13 +176,17 @@ function parseTsv(content) {
 
 function slugify(title, id) {
   if (!title) return id.replace(/^ProductVariant_/, "");
+  // الحروف الأولى من الـ ID كـ suffix قصير لضمان التفرد
+  const suffix = id.replace(/^ProductVariant_/, "").slice(-4);
   const clean = title
     .trim()
+    .normalize("NFC")
+    .replace(/[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFF]/g, (c) => c) // حافظ على العربية
     .replace(/[^\p{L}\p{N}\s-]/gu, "")
     .replace(/[\s_]+/g, "-")
     .replace(/-+/g, "-")
     .replace(/^-+|-+$/g, "");
-  return clean || id.replace(/^ProductVariant_/, "");
+  return (clean || id.replace(/^ProductVariant_/, "")) + "-" + suffix;
 }
 function parsePrice(value) {
   if (!value) return null;
