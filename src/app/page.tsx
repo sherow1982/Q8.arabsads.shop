@@ -37,7 +37,6 @@ export default function Home() {
             alt="Q8 اعلانات العرب — أفضل العروض والخصومات"
             className="h-auto w-full object-cover"
             style={{ maxHeight: "480px", objectPosition: "center" }}
-            fetchPriority="high"
           />
         </a>
       </section>
