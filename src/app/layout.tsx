@@ -144,6 +144,19 @@ export default function RootLayout({
         <meta name="contact" content={STORE_EMAIL} />
         <meta name="reply-to" content={STORE_EMAIL} />
         {/* ─── Mobile App Tags ────────────────── */}
+        {/* ─── Google Site Verification ────────────── */}
+        <meta name="google-site-verification" content="J41Ee0OHJVjB_8DoJsdE5Yx1AFqhbG8yQFOIr-twjoc" />
+        {/* ─── Google Analytics (gtag.js) ─────────── */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-KS8HZ72L6X" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-KS8HZ72L6X');`,
+          }}
+        />
+        {/* ─── Mobile App Tags ────────────────── */}
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
