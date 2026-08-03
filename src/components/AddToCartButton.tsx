@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { useCart } from "@/context/CartContext";
 import type { Product } from "@/types/product";
 
@@ -11,12 +11,11 @@ type Props = {
 
 export default function AddToCartButton({ product, className = "" }: Props) {
   const { addItem } = useCart();
-  const [added, setAdded] = useState(false);
+  const router = useRouter();
 
   function handleAdd() {
     addItem(product, 1);
-    setAdded(true);
-    setTimeout(() => setAdded(false), 2000);
+    router.push("/cart");
   }
 
   return (
@@ -25,7 +24,7 @@ export default function AddToCartButton({ product, className = "" }: Props) {
       onClick={handleAdd}
       className={`rounded bg-[#333] px-8 py-3 text-center text-sm font-bold text-white hover:bg-[#e53935] ${className}`}
     >
-      {added ? "✓ تمت الإضافة" : "أضف إلى السلة"}
+      أضف إلى السلة
     </button>
   );
 }
