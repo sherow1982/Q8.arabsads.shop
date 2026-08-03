@@ -7,12 +7,14 @@ export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://q8.arabsads.shop";
 
 // واتساب
-export const WHATSAPP_NUMBER = "96550007000";
+export const WHATSAPP_NUMBER = "201110760081";
 export const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}`;
 
-// بيانات التواصل
+// بيانات التواصل — الرقم الظاهر كويتي، الواتساب مصري
 export const STORE_PHONE = "96550007000";
-export const STORE_PHONE_FULL = "+965 5000 7000";
+export const STORE_PHONE_FULL = "+965 5000 7000"; // الرقم الكويتي — ظاهر في الـ schema فقط
+export const STORE_PHONE_DISPLAY = "+965 5000 7000"; // للعرض
+export const STORE_WHATSAPP_LINK = "https://wa.me/201110760081"; // واتساب فعلي
 export const STORE_EMAIL = "sales@q8.arabsads.shop";
 
 // اسم المتجر

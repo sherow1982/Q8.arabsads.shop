@@ -1,4 +1,4 @@
-import { SITE_URL, WHATSAPP_URL } from "./constants";
+import { SITE_URL, STORE_WHATSAPP_LINK } from "./constants";
 import type { CartItem, CustomerInfo } from "@/types/cart";
 import type { InquiryInfo, ProductInquiryContext } from "@/types/inquiry";
 import { formatCartItemPrice, getCartItemPath, getCartTotal, getItemLineTotal } from "@/types/cart";
@@ -47,12 +47,12 @@ export function buildOrderMessage(items: CartItem[], customer: CustomerInfo): st
 
 export function buildWhatsAppOrderUrl(items: CartItem[], customer: CustomerInfo): string {
   const text = buildOrderMessage(items, customer);
-  return `${WHATSAPP_URL}?text=${encodeURIComponent(text)}`;
+  return `${STORE_WHATSAPP_LINK}?text=${encodeURIComponent(text)}`;
 }
 
 export function buildWhatsAppInquiryUrl(message?: string): string {
   const text = message ?? "مرحباً، لدي استفسار بخصوص منتجاتكم.";
-  return `${WHATSAPP_URL}?text=${encodeURIComponent(text)}`;
+  return `${STORE_WHATSAPP_LINK}?text=${encodeURIComponent(text)}`;
 }
 
 export function buildInquiryMessage(inquiry: InquiryInfo, product?: ProductInquiryContext): string {
@@ -92,5 +92,5 @@ export function buildWhatsAppInquiryUrlFromForm(
   inquiry: InquiryInfo,
   product?: ProductInquiryContext
 ): string {
-  return `${WHATSAPP_URL}?text=${encodeURIComponent(buildInquiryMessage(inquiry, product))}`;
+  return `${STORE_WHATSAPP_LINK}?text=${encodeURIComponent(buildInquiryMessage(inquiry, product))}`;
 }
