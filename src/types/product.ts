@@ -9,6 +9,7 @@ export type Product = {
   image: string;
   url: string;
   category: string;
+  brand?: string;
   description: string;
   summary: string;
 };
@@ -43,5 +44,5 @@ export function hasDiscount(product: Product): boolean {
 
 export function getProductPath(product: Product): string {
   const slug = product.slug || product.id.replace(/^ProductVariant_/, "");
-  return `/products/?slug=${encodeURIComponent(slug)}`;
+  return `/products/${encodeURIComponent(slug)}/`;
 }

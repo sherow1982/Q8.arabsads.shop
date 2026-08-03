@@ -196,7 +196,7 @@ export function productSchema(product: Product) {
     mpn: product.id,
     brand: {
       "@type": "Brand",
-      name: product.category ?? STORE_NAME,
+      name: product.brand ?? product.category ?? STORE_NAME,
     },
     seller: { "@id": `${SITE_URL}/#organization` },
     category: product.category,

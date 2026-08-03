@@ -51,7 +51,7 @@ export default function ProductCard({ product }: Props) {
 
         <a
           href={getProductPath(product)}
-          className="mt-3 block rounded bg-[#333] py-2 text-center text-xs font-bold text-white opacity-0 transition group-hover:opacity-100 hover:bg-[#e53935]"
+          className="mt-3 block rounded bg-[#333] py-2 text-center text-xs font-bold text-white transition hover:bg-[#e53935] md:opacity-0 md:group-hover:opacity-100"
         >
           عرض التفاصيل
         </a>

@@ -87,12 +87,17 @@ function generateStaticFiles() {
       const basePrice = hasSale ? p.price : (p.salePrice ?? p.price);
       const priceStr = `${ceilPrice(basePrice).toFixed(3)} KWD`;
       const salePriceStr = hasSale ? `${ceilPrice(p.salePrice).toFixed(3)} KWD` : "";
-      const slug = p.id.replace(/^ProductVariant_/, "");
-      const link = `${SITE_URL}/products/?slug=${encodeURIComponent(slug)}`;
+      const slug = p.slug || p.id.replace(/^ProductVariant_/, "");
+      const link = `${SITE_URL}/products/${encodeURIComponent(slug)}/`;
       const desc = (p.description || p.summary || p.title)
         .replace(/\s+/g, " ").trim().slice(0, 5000);
+      const mpn = p.id.replace(/^ProductVariant_/, "");
+      // sale_price_effective_date: من الآن لمدة 30 يوم
+      const now = new Date();
+      const future = new Date(now.getTime() + 30 * 86400000);
+      const saleDateRange = `${now.toISOString().slice(0,10)}/${future.toISOString().slice(0,10)}`;
       return `<item>
-  <g:id>${escapeXml(slug)}</g:id>
+  <g:id>${escapeXml(mpn)}</g:id>
   <g:title>${escapeXml(p.title.slice(0, 150))}</g:title>
   <g:description>${escapeXml(desc)}</g:description>
   <g:link>${escapeXml(link)}</g:link>
@@ -100,13 +105,17 @@ function generateStaticFiles() {
   <g:availability>in_stock</g:availability>
   <g:price>${escapeXml(priceStr)}</g:price>
   ${hasSale ? `<g:sale_price>${escapeXml(salePriceStr)}</g:sale_price>` : ""}
-  <g:brand>${escapeXml(STORE_NAME)}</g:brand>
+  ${hasSale ? `<g:sale_price_effective_date>${escapeXml(saleDateRange)}</g:sale_price_effective_date>` : ""}
+  <g:brand>${escapeXml(p.brand || STORE_NAME)}</g:brand>
+  <g:mpn>${escapeXml(mpn)}</g:mpn>
   <g:condition>new</g:condition>
   <g:identifier_exists>false</g:identifier_exists>
   <g:target_country>KW</g:target_country>
   <g:content_language>ar</g:content_language>
   <g:google_product_category>${escapeXml(googleCategory(p.category))}</g:google_product_category>
   <g:product_type>${escapeXml(p.category)}</g:product_type>
+  <g:custom_label_0>${escapeXml(p.category)}</g:custom_label_0>
+  ${hasSale ? `<g:custom_label_1>sale</g:custom_label_1>` : "<g:custom_label_1>regular</g:custom_label_1>"}
   <g:shipping><g:country>KW</g:country><g:service>Standard</g:service><g:price>0 KWD</g:price></g:shipping>
   <g:tax><g:country>KW</g:country><g:rate>0</g:rate><g:tax_ship>no</g:tax_ship></g:tax>
 </item>`;

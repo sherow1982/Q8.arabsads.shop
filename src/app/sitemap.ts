@@ -38,11 +38,11 @@ export default function sitemap(): SitemapEntry[] {
     priority: 0.8,
   }));
 
-  // ─── صفحات المنتجات (query-slug format) ────────────────────
+  // ─── صفحات المنتجات (clean URL format) ────────────────────
   const productPages: SitemapEntry[] = catalog.products.map((product) => {
     const slug = product.slug || product.id.replace(/^ProductVariant_/, "");
     return {
-      url: `${SITE_URL}/products/?slug=${encodeURIComponent(slug)}`,
+      url: `${SITE_URL}/products/${encodeURIComponent(slug)}/`,
       lastModified: importedAt,
       changeFrequency: "weekly" as const,
       priority: 0.7,
