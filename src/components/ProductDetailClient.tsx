@@ -33,7 +33,42 @@ export default function ProductDetailClient({ slug }: { slug: string }) {
         );
         if (found) {
           setProduct(found);
-          document.title = `${found.title} | Q8 اعلانات العرب`;
+          // ─── SEO: title + meta description + canonical ───
+          const price = Math.ceil(found.salePrice ?? found.price ?? 0).toFixed(3);
+          document.title = `${found.title} — ${price} KD | Q8 اعلانات العرب`;
+          const desc = (found.description || found.summary || found.title).slice(0, 155) + ` — ${price} KD. توصيل لجميع مناطق الكويت.`;
+          let metaDesc = document.querySelector('meta[name="description"]');
+          if (!metaDesc) { metaDesc = document.createElement("meta"); (metaDesc as HTMLMetaElement).name = "description"; document.head.appendChild(metaDesc); }
+          (metaDesc as HTMLMetaElement).content = desc;
+          // ─── Schema.org Product ───
+          const existingSchema = document.getElementById("product-schema");
+          if (existingSchema) existingSchema.remove();
+          const script = document.createElement("script");
+          script.id = "product-schema";
+          script.type = "application/ld+json";
+          script.text = JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Product",
+            name: found.title,
+            description: found.description || found.summary,
+            image: found.image ? [found.image] : undefined,
+            sku: found.id,
+            brand: { "@type": "Brand", name: found.category },
+            offers: {
+              "@type": "Offer",
+              priceCurrency: "KWD",
+              price: price,
+              availability: "https://schema.org/InStock",
+              itemCondition: "https://schema.org/NewCondition",
+              url: `${SITE_URL}/products/${encodeURIComponent(found.slug)}/`,
+              shippingDetails: {
+                "@type": "OfferShippingDetails",
+                shippingRate: { "@type": "MonetaryAmount", value: 0, currency: "KWD" },
+                shippingDestination: { "@type": "DefinedRegion", addressCountry: "KW" },
+              },
+            },
+          });
+          document.head.appendChild(script);
           const rel = catalog.products
             .filter((p) => p.category === found.category && p.slug !== found.slug)
             .slice(0, 6);
