@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { buildWhatsAppInquiryUrl } from "@/lib/whatsapp";
-import { STORE_EMAIL, STORE_NAME_AR, STORE_PHONE_FULL } from "@/lib/constants";
+import { STORE_ADDRESS_AR, STORE_EMAIL, STORE_NAME_AR, STORE_PHONE_FULL, STORE_POSTAL_CODE } from "@/lib/constants";
 
 const LOGO = "/logo.webp";
 
@@ -123,7 +123,10 @@ export default function Footer() {
                   <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
                 </svg>
               </span>
-              حولي، الكويت 🇰🇼
+              <address className="not-italic text-sm text-[#a0a0b8]">
+                {STORE_ADDRESS_AR}<br />
+                <span className="text-xs text-[#6666aa]">الرمز البريدي: {STORE_POSTAL_CODE} — الكويت 🇰🇼</span>
+              </address>
             </div>
           </div>
 

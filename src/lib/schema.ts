@@ -8,6 +8,7 @@ import {
   STORE_NAME,
   STORE_NAME_AR,
   STORE_PHONE_FULL,
+  STORE_POSTAL_CODE,
 } from "./constants";
 import type { Product } from "@/types/product";
 import { ceilPrice, formatPrice, getProductPath, hasDiscount } from "@/types/product";
@@ -35,10 +36,11 @@ export function organizationSchema() {
     telephone: STORE_PHONE_FULL,
     address: {
       "@type": "PostalAddress",
-      addressLocality: STORE_CITY,
-      addressCountry: STORE_COUNTRY,
-      addressRegion: "Kuwait",
       streetAddress: STORE_ADDRESS,
+      addressLocality: STORE_CITY,
+      postalCode: STORE_POSTAL_CODE,
+      addressRegion: "Hawalli",
+      addressCountry: STORE_COUNTRY,
     },
     areaServed: [
       { "@type": "Country", name: "Kuwait" },
@@ -99,10 +101,11 @@ export function storeSchema() {
     telephone: STORE_PHONE_FULL,
     address: {
       "@type": "PostalAddress",
-      addressLocality: STORE_CITY,
-      addressCountry: STORE_COUNTRY,
-      addressRegion: "Kuwait",
       streetAddress: STORE_ADDRESS,
+      addressLocality: STORE_CITY,
+      postalCode: STORE_POSTAL_CODE,
+      addressRegion: "Hawalli",
+      addressCountry: STORE_COUNTRY,
     },
     geo: {
       "@type": "GeoCoordinates",
